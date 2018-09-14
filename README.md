@@ -1,0 +1,2 @@
+# isogainEfficiency
+Isogain efficiency measurement
