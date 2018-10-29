@@ -77,7 +77,7 @@ Partial Class Form1
 		'
 		'txtEngSPow
 		'
-		Me.txtEngSPow.Location = New System.Drawing.Point(584, 24)
+		Me.txtEngSPow.Location = New System.Drawing.Point(584, 26)
 		Me.txtEngSPow.Name = "txtEngSPow"
 		Me.txtEngSPow.Size = New System.Drawing.Size(100, 22)
 		Me.txtEngSPow.TabIndex = 2
