@@ -23,14 +23,16 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
 		Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-		Me.btnEngSSet = New System.Windows.Forms.Button()
-		Me.btnEngPSet = New System.Windows.Forms.Button()
-		Me.txtEngSPow = New System.Windows.Forms.TextBox()
-		Me.txtEngPPow = New System.Windows.Forms.TextBox()
-		Me.txtEngSCur = New System.Windows.Forms.TextBox()
-		Me.txtEngPCur = New System.Windows.Forms.TextBox()
-		Me.Label1 = New System.Windows.Forms.Label()
+		Me.btnEngPOn = New System.Windows.Forms.Button()
+		Me.btnEngSOn = New System.Windows.Forms.Button()
 		Me.Label2 = New System.Windows.Forms.Label()
+		Me.Label1 = New System.Windows.Forms.Label()
+		Me.txtEngPCur = New System.Windows.Forms.TextBox()
+		Me.txtEngSCur = New System.Windows.Forms.TextBox()
+		Me.txtEngPPow = New System.Windows.Forms.TextBox()
+		Me.txtEngSPow = New System.Windows.Forms.TextBox()
+		Me.btnEngPSet = New System.Windows.Forms.Button()
+		Me.btnEngSSet = New System.Windows.Forms.Button()
 		Me.GroupBox1.SuspendLayout()
 		Me.SuspendLayout()
 		'
@@ -38,6 +40,8 @@ Partial Class Form1
 		'
 		Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.GroupBox1.Controls.Add(Me.btnEngPOn)
+		Me.GroupBox1.Controls.Add(Me.btnEngSOn)
 		Me.GroupBox1.Controls.Add(Me.Label2)
 		Me.GroupBox1.Controls.Add(Me.Label1)
 		Me.GroupBox1.Controls.Add(Me.txtEngPCur)
@@ -55,15 +59,73 @@ Partial Class Form1
 		Me.GroupBox1.TabStop = False
 		Me.GroupBox1.Text = "Engineering control"
 		'
-		'btnEngSSet
+		'btnEngPOn
 		'
-		Me.btnEngSSet.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.btnEngSSet.Location = New System.Drawing.Point(112, 23)
-		Me.btnEngSSet.Name = "btnEngSSet"
-		Me.btnEngSSet.Size = New System.Drawing.Size(118, 23)
-		Me.btnEngSSet.TabIndex = 0
-		Me.btnEngSSet.Text = "Set seed current"
-		Me.btnEngSSet.UseVisualStyleBackColor = True
+		Me.btnEngPOn.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.btnEngPOn.Location = New System.Drawing.Point(267, 51)
+		Me.btnEngPOn.Name = "btnEngPOn"
+		Me.btnEngPOn.Size = New System.Drawing.Size(128, 23)
+		Me.btnEngPOn.TabIndex = 9
+		Me.btnEngPOn.Text = "Switch pump ON"
+		Me.btnEngPOn.UseVisualStyleBackColor = True
+		'
+		'btnEngSOn
+		'
+		Me.btnEngSOn.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.btnEngSOn.Location = New System.Drawing.Point(267, 22)
+		Me.btnEngSOn.Name = "btnEngSOn"
+		Me.btnEngSOn.Size = New System.Drawing.Size(128, 23)
+		Me.btnEngSOn.TabIndex = 8
+		Me.btnEngSOn.Text = "Switch seed ON"
+		Me.btnEngSOn.UseVisualStyleBackColor = True
+		'
+		'Label2
+		'
+		Me.Label2.AutoSize = True
+		Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label2.Location = New System.Drawing.Point(504, 82)
+		Me.Label2.Name = "Label2"
+		Me.Label2.Size = New System.Drawing.Size(76, 13)
+		Me.Label2.TabIndex = 7
+		Me.Label2.Text = "Pump power"
+		'
+		'Label1
+		'
+		Me.Label1.AutoSize = True
+		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label1.Location = New System.Drawing.Point(504, 24)
+		Me.Label1.Name = "Label1"
+		Me.Label1.Size = New System.Drawing.Size(74, 13)
+		Me.Label1.TabIndex = 6
+		Me.Label1.Text = "Seed power"
+		'
+		'txtEngPCur
+		'
+		Me.txtEngPCur.Location = New System.Drawing.Point(6, 51)
+		Me.txtEngPCur.Name = "txtEngPCur"
+		Me.txtEngPCur.Size = New System.Drawing.Size(100, 22)
+		Me.txtEngPCur.TabIndex = 5
+		'
+		'txtEngSCur
+		'
+		Me.txtEngSCur.Location = New System.Drawing.Point(6, 23)
+		Me.txtEngSCur.Name = "txtEngSCur"
+		Me.txtEngSCur.Size = New System.Drawing.Size(100, 22)
+		Me.txtEngSCur.TabIndex = 4
+		'
+		'txtEngPPow
+		'
+		Me.txtEngPPow.Location = New System.Drawing.Point(584, 82)
+		Me.txtEngPPow.Name = "txtEngPPow"
+		Me.txtEngPPow.Size = New System.Drawing.Size(100, 22)
+		Me.txtEngPPow.TabIndex = 3
+		'
+		'txtEngSPow
+		'
+		Me.txtEngSPow.Location = New System.Drawing.Point(584, 24)
+		Me.txtEngSPow.Name = "txtEngSPow"
+		Me.txtEngSPow.Size = New System.Drawing.Size(100, 22)
+		Me.txtEngSPow.TabIndex = 2
 		'
 		'btnEngPSet
 		'
@@ -75,51 +137,15 @@ Partial Class Form1
 		Me.btnEngPSet.Text = "Set pump current"
 		Me.btnEngPSet.UseVisualStyleBackColor = True
 		'
-		'txtEngSPow
+		'btnEngSSet
 		'
-		Me.txtEngSPow.Location = New System.Drawing.Point(584, 26)
-		Me.txtEngSPow.Name = "txtEngSPow"
-		Me.txtEngSPow.Size = New System.Drawing.Size(100, 22)
-		Me.txtEngSPow.TabIndex = 2
-		'
-		'txtEngPPow
-		'
-		Me.txtEngPPow.Location = New System.Drawing.Point(584, 82)
-		Me.txtEngPPow.Name = "txtEngPPow"
-		Me.txtEngPPow.Size = New System.Drawing.Size(100, 22)
-		Me.txtEngPPow.TabIndex = 3
-		'
-		'txtEngSCur
-		'
-		Me.txtEngSCur.Location = New System.Drawing.Point(6, 23)
-		Me.txtEngSCur.Name = "txtEngSCur"
-		Me.txtEngSCur.Size = New System.Drawing.Size(100, 22)
-		Me.txtEngSCur.TabIndex = 4
-		'
-		'txtEngPCur
-		'
-		Me.txtEngPCur.Location = New System.Drawing.Point(6, 51)
-		Me.txtEngPCur.Name = "txtEngPCur"
-		Me.txtEngPCur.Size = New System.Drawing.Size(100, 22)
-		Me.txtEngPCur.TabIndex = 5
-		'
-		'Label1
-		'
-		Me.Label1.AutoSize = True
-		Me.Label1.Location = New System.Drawing.Point(487, 26)
-		Me.Label1.Name = "Label1"
-		Me.Label1.Size = New System.Drawing.Size(91, 16)
-		Me.Label1.TabIndex = 6
-		Me.Label1.Text = "Seed power"
-		'
-		'Label2
-		'
-		Me.Label2.AutoSize = True
-		Me.Label2.Location = New System.Drawing.Point(487, 82)
-		Me.Label2.Name = "Label2"
-		Me.Label2.Size = New System.Drawing.Size(93, 16)
-		Me.Label2.TabIndex = 7
-		Me.Label2.Text = "Pump power"
+		Me.btnEngSSet.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.btnEngSSet.Location = New System.Drawing.Point(112, 23)
+		Me.btnEngSSet.Name = "btnEngSSet"
+		Me.btnEngSSet.Size = New System.Drawing.Size(118, 23)
+		Me.btnEngSSet.TabIndex = 0
+		Me.btnEngSSet.Text = "Set seed current"
+		Me.btnEngSSet.UseVisualStyleBackColor = True
 		'
 		'Form1
 		'
@@ -144,4 +170,6 @@ Partial Class Form1
 	Friend WithEvents txtEngSPow As TextBox
 	Friend WithEvents btnEngPSet As Button
 	Friend WithEvents btnEngSSet As Button
+	Friend WithEvents btnEngPOn As Button
+	Friend WithEvents btnEngSOn As Button
 End Class
