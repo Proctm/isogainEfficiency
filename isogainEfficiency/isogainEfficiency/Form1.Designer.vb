@@ -23,6 +23,9 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -37,7 +40,6 @@ Partial Class Form1
         Me.btnEngPSet = New System.Windows.Forms.Button()
         Me.btnEngSSet = New System.Windows.Forms.Button()
         Me.tmrMain = New System.Windows.Forms.Timer(Me.components)
-        Me.cmbTest = New System.Windows.Forms.ComboBox()
         Me.btnStartTest = New System.Windows.Forms.Button()
         Me.tmrTest = New System.Windows.Forms.Timer(Me.components)
         Me.txtTestPPower = New System.Windows.Forms.TextBox()
@@ -45,9 +47,9 @@ Partial Class Form1
         Me.btnStopTest = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtTestSPower = New System.Windows.Forms.TextBox()
-        Me.cmb2 = New System.Windows.Forms.ComboBox()
-        Me.cmb1 = New System.Windows.Forms.ComboBox()
+        Me.crtResults = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.crtResults, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -179,14 +181,6 @@ Partial Class Form1
         '
         Me.tmrMain.Interval = 250
         '
-        'cmbTest
-        '
-        Me.cmbTest.FormattingEnabled = True
-        Me.cmbTest.Location = New System.Drawing.Point(468, 147)
-        Me.cmbTest.Name = "cmbTest"
-        Me.cmbTest.Size = New System.Drawing.Size(121, 21)
-        Me.cmbTest.TabIndex = 1
-        '
         'btnStartTest
         '
         Me.btnStartTest.Location = New System.Drawing.Point(100, 104)
@@ -243,42 +237,42 @@ Partial Class Form1
         Me.txtTestSPower.Size = New System.Drawing.Size(100, 20)
         Me.txtTestSPower.TabIndex = 6
         '
-        'cmb2
+        'crtResults
         '
-        Me.cmb2.FormattingEnabled = True
-        Me.cmb2.Location = New System.Drawing.Point(441, 286)
-        Me.cmb2.Name = "cmb2"
-        Me.cmb2.Size = New System.Drawing.Size(121, 21)
-        Me.cmb2.TabIndex = 8
-        '
-        'cmb1
-        '
-        Me.cmb1.FormattingEnabled = True
-        Me.cmb1.Location = New System.Drawing.Point(297, 286)
-        Me.cmb1.Name = "cmb1"
-        Me.cmb1.Size = New System.Drawing.Size(121, 21)
-        Me.cmb1.TabIndex = 9
+        ChartArea1.Name = "ChartArea1"
+        Me.crtResults.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        Me.crtResults.Legends.Add(Legend1)
+        Me.crtResults.Location = New System.Drawing.Point(268, 189)
+        Me.crtResults.Name = "crtResults"
+        Series1.ChartArea = "ChartArea1"
+        Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series1.Legend = "Legend1"
+        Series1.Name = "Efficiency"
+        Me.crtResults.Series.Add(Series1)
+        Me.crtResults.Size = New System.Drawing.Size(405, 265)
+        Me.crtResults.TabIndex = 8
+        Me.crtResults.Text = "Chart1"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(714, 593)
-        Me.Controls.Add(Me.cmb1)
-        Me.Controls.Add(Me.cmb2)
+        Me.Controls.Add(Me.crtResults)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.txtTestSPower)
         Me.Controls.Add(Me.btnStopTest)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtTestPPower)
         Me.Controls.Add(Me.btnStartTest)
-        Me.Controls.Add(Me.cmbTest)
         Me.Controls.Add(Me.GroupBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
         Me.Text = "Isogain efficiency"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.crtResults, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -297,7 +291,6 @@ Partial Class Form1
     Friend WithEvents btnEngSOn As Button
     Friend WithEvents tmrMain As Timer
     Friend WithEvents Label3 As Label
-    Friend WithEvents cmbTest As ComboBox
     Friend WithEvents btnStartTest As Button
     Friend WithEvents tmrTest As Timer
     Friend WithEvents txtTestPPower As TextBox
@@ -305,6 +298,5 @@ Partial Class Form1
     Friend WithEvents btnStopTest As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents txtTestSPower As TextBox
-    Friend WithEvents cmb2 As ComboBox
-    Friend WithEvents cmb1 As ComboBox
+    Friend WithEvents crtResults As DataVisualization.Charting.Chart
 End Class

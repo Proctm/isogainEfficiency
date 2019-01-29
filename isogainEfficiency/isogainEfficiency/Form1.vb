@@ -1,5 +1,9 @@
 ﻿Imports Thorlabs.PM100D_32.Interop
 Imports Thorlabs.TL4000
+Imports System
+Imports System.IO
+Imports System.Collections
+
 
 Public Class Form1
     Dim lasSeed, lasPump As TL4000
@@ -15,6 +19,7 @@ Public Class Form1
     Dim pwr1550Test, pwr980Test As Double
     Dim pwr980, pwr1550 As Decimal
     Dim list980Power, list1550Power As New List(Of Double)
+    Dim results As New DataTable
 
     'Dim lisOut, lisSeed, lisPump As New List(Of Double)
 
@@ -63,6 +68,7 @@ Public Class Form1
         txtTestSPower.Text = pwr1550
     End Sub
 
+
     Private Sub btnEngSSet_Click(sender As Object, e As EventArgs) Handles btnEngSSet.Click
         Dim seedCur As Double
         seedCur = txtEngSCur.Text / 1000
@@ -75,13 +81,6 @@ Public Class Form1
         lasPump.setLdCurrSetpoint(0.01)
         lasPump.switchLdOutput(0)
         lasSeed.switchLdOutput(0)
-        For Each entry In list1550Power
-            cmb1.Items.Add(entry)
-        Next
-        For Each entry In list980Power
-            cmb2.Items.Add(entry)
-        Next
-
     End Sub
 
     Private Sub btnStartTest_Click(sender As Object, e As EventArgs) Handles btnStartTest.Click
@@ -114,10 +113,19 @@ Public Class Form1
             testCount = 0
 
         End If
-        If testIndex = 6 Then
+        If testIndex = 5 Then
             lasPump.setLdCurrSetpoint(0.01)
             lasPump.switchLdOutput(0)
             lasSeed.switchLdOutput(0)
+            For i As Integer = 0 To list980Power.Count - 1
+                crtResults.Series("Efficiency").Points.AddXY(listPumpPower(i), list1550Power(i))
+            Next
+
+
+
+
+
+
             tmrTest.Stop()
             testSwitch = 0
         End If
@@ -158,10 +166,8 @@ Public Class Form1
         For Each num In listPumpPower
             listPumpCurrent.Add((num - calIntercept) / (1000 * calB1))
         Next
-        For Each num In listPumpCurrent
-            cmbTest.Items.Add(num)
-        Next
         testSwitch = 0
+
 
 
     End Sub
