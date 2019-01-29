@@ -3,6 +3,8 @@ Imports Thorlabs.TL4000
 Imports System
 Imports System.IO
 Imports System.Collections
+Imports Microsoft.Office.Interop
+Imports Microsoft.Office.Interop.Excel
 
 
 Public Class Form1
@@ -19,16 +21,16 @@ Public Class Form1
     Dim pwr1550Test, pwr980Test As Double
     Dim pwr980, pwr1550 As Decimal
     Dim list980Power, list1550Power As New List(Of Double)
-    Dim results As New DataTable
+	'Dim results As New DataTable
 
-    'Dim lisOut, lisSeed, lisPump As New List(Of Double)
-
-
+	'Dim lisOut, lisSeed, lisPump As New List(Of Double)
 
 
 
 
-    Private Sub btnEngSOn_Click(sender As Object, e As EventArgs) Handles btnEngSOn.Click
+
+
+	Private Sub btnEngSOn_Click(sender As Object, e As EventArgs) Handles btnEngSOn.Click
 		If seedOn = False Then
 			'MsgBox("Ensure that lid is closed")
 		End If
@@ -68,14 +70,22 @@ Public Class Form1
         txtTestSPower.Text = pwr1550
     End Sub
 
+	Private Sub btnOpenExcel_Click(sender As Object, e As EventArgs) Handles btnOpenExcel.Click
+		Dim oExcel As Excel.Application
+		Dim oBook As Excel.Workbook
+		Dim oSheet As Excel.Worksheet
+		oExcel = CreateObject("Excel.Application")
+		oBook = oExcel.Workbooks.Add(Type.Missing)
+		oSheet = oBook.Worksheets(1)
+	End Sub
 
-    Private Sub btnEngSSet_Click(sender As Object, e As EventArgs) Handles btnEngSSet.Click
-        Dim seedCur As Double
-        seedCur = txtEngSCur.Text / 1000
-        lasSeed.setLdCurrSetpoint(seedCur)
-    End Sub
+	Private Sub btnEngSSet_Click(sender As Object, e As EventArgs) Handles btnEngSSet.Click
+		Dim seedCur As Double
+		seedCur = txtEngSCur.Text / 1000
+		lasSeed.setLdCurrSetpoint(seedCur)
+	End Sub
 
-    Private Sub btnStopTest_Click(sender As Object, e As EventArgs) Handles btnStopTest.Click
+	Private Sub btnStopTest_Click(sender As Object, e As EventArgs) Handles btnStopTest.Click
         tmrTest.Stop()
         testIndex = 0
         lasPump.setLdCurrSetpoint(0.01)
